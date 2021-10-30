@@ -1,5 +1,6 @@
-package com.example.mycleanarchitectureapp
+package com.example.mycleanarchitectureapp.model
 
+import com.example.mycleanarchitectureapp.model.MovieDbResult
 import retrofit2.http.GET
 import retrofit2.http.Query
 

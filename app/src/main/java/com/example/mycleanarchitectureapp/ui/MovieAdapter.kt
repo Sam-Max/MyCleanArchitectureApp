@@ -1,10 +1,12 @@
-package com.example.mycleanarchitectureapp
+package com.example.mycleanarchitectureapp.ui
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mycleanarchitectureapp.R
 import com.example.mycleanarchitectureapp.databinding.ViewMovieBinding
+import com.example.mycleanarchitectureapp.model.Movie
 
 class MovieAdapter (var movies: List<Movie>) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 

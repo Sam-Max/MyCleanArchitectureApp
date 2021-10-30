@@ -1,11 +1,10 @@
-package com.example.mycleanarchitectureapp
+package com.example.mycleanarchitectureapp.ui
 
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.mycleanarchitectureapp.model.MovieDb
+import com.example.mycleanarchitectureapp.R
 import com.example.mycleanarchitectureapp.databinding.ActivityMainBinding
-import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch

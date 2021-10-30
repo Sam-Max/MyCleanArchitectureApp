@@ -12,5 +12,4 @@
         android:text="@string/api_key"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
 
-
 </FrameLayout>

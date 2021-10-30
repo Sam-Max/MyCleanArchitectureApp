@@ -1,4 +1,4 @@
-package com.example.mycleanarchitectureapp
+package com.example.mycleanarchitectureapp.model
 
 import com.google.gson.annotations.SerializedName
 
