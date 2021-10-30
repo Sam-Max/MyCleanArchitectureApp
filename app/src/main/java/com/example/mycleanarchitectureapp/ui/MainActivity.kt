@@ -1,24 +1,20 @@
 package com.example.mycleanarchitectureapp.ui
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import com.example.mycleanarchitectureapp.model.MovieDb
 import com.example.mycleanarchitectureapp.R
 import com.example.mycleanarchitectureapp.databinding.ActivityMainBinding
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
+import com.example.mycleanarchitectureapp.model.MovieDb
+import com.example.mycleanarchitectureapp.ui.common.CoroutineScopeActivity
 import kotlinx.coroutines.launch
 
-class MainActivity : AppCompatActivity() {
-
+class MainActivity : CoroutineScopeActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding= ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        GlobalScope.launch(Dispatchers.Main) {
-
+        launch {
             val movies= MovieDb.service.listPopularMovies(getString(R.string.api_key))
             val adapter= MovieAdapter(movies.results)
             binding.recycler.adapter= adapter
