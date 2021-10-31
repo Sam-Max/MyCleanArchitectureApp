@@ -1,15 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="4dp">
+
+    <ImageView
+        android:id="@+id/movieCover"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        tools:src="@tools:sample/backgrounds/scenic"/>
 
     <TextView
         android:id="@+id/movieTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="@string/api_key"
+        android:padding="8dp"
+        android:lines="2"
+        android:minLines="2"
+        tools:text="@tools:sample/lorem"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
 
-</FrameLayout>
+</LinearLayout>

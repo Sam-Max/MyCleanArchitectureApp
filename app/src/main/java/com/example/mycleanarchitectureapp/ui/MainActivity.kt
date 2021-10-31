@@ -1,5 +1,6 @@
 package com.example.mycleanarchitectureapp.ui
 
+import android.content.Context
 import android.os.Bundle
 import com.example.mycleanarchitectureapp.R
 import com.example.mycleanarchitectureapp.databinding.ActivityMainBinding
@@ -16,7 +17,7 @@ class MainActivity : CoroutineScopeActivity() {
 
         launch {
             val movies= MovieDb.service.listPopularMovies(getString(R.string.api_key))
-            val adapter= MovieAdapter(movies.results)
+            val adapter= MovieAdapter(this@MainActivity, movies.results)
             binding.recycler.adapter= adapter
         }
     }
