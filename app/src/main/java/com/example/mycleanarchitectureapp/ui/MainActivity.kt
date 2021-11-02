@@ -2,6 +2,7 @@ package com.example.mycleanarchitectureapp.ui
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.location.Geocoder
 import android.location.Location
 import android.os.Bundle
 import com.example.mycleanarchitectureapp.R
@@ -30,18 +31,26 @@ class MainActivity : CoroutineScopeActivity() {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
         launch {
-            val location= getLocation()
+            val location = getLocation()
             val movies = MovieDb.service.listPopularMovies(
                 getString(R.string.api_key),
-                getRegionFromLocation()
+                getRegionFromLocation(location)
             )
             val adapter = MovieAdapter(this@MainActivity, movies.results)
             binding.recycler.adapter = adapter
         }
     }
 
-    private fun getRegionFromLocation(): String {
-        return ""
+    private fun getRegionFromLocation(location: Location?): String {
+        val geocoder = Geocoder(this@MainActivity)
+        val fromLocation = location?.let {
+            geocoder.getFromLocation(
+                location.latitude,
+                location.longitude,
+                1
+            )
+        }
+        return fromLocation?.firstOrNull()?.countryCode ?: "US"
     }
 
     private suspend fun getLocation(): Location? {
@@ -74,6 +83,5 @@ class MainActivity : CoroutineScopeActivity() {
                 }
             }).check()
     }
-
 }
 
