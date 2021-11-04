@@ -12,7 +12,8 @@ import com.example.mycleanarchitectureapp.model.Movie
 
 class MovieAdapter(
     private val context: Context,
-    var movies: List<Movie>
+    var movies: List<Movie>,
+    val listener: (Movie) -> Unit
 ) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
@@ -24,10 +25,14 @@ class MovieAdapter(
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         val binding= ViewMovieBinding.bind(holder.view)
-        binding.movieTitle.text= movies[position].title
+
+        val movie= movies[position]
+        binding.movieTitle.text= movie.title
         Glide.with(context)
-            .load("https://image.tmdb.org/t/p/w185/${movies[position].posterPath}")
+            .load("https://image.tmdb.org/t/p/w185/${movie.posterPath}")
             .into(binding.movieCover)
+
+        holder.itemView.setOnClickListener{ listener(movie)}
     }
 
     override fun getItemCount(): Int = movies.size
