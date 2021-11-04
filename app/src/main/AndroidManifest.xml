@@ -3,7 +3,7 @@
     package="com.example.mycleanarchitectureapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -13,13 +13,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyCleanArchitectureApp">
         <activity
-            android:name=".ui.MainActivity"
-            android:exported="true">
+            android:name=".ui.common.DetailActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="true">
         </activity>
     </application>
 
