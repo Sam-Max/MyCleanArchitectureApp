@@ -2,6 +2,7 @@ package com.example.mycleanarchitectureapp.ui
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.location.Geocoder
 import android.location.Location
 import android.os.Bundle
@@ -9,6 +10,7 @@ import com.example.mycleanarchitectureapp.R
 import com.example.mycleanarchitectureapp.databinding.ActivityMainBinding
 import com.example.mycleanarchitectureapp.model.MovieDb
 import com.example.mycleanarchitectureapp.ui.common.CoroutineScopeActivity
+import com.example.mycleanarchitectureapp.ui.common.DetailActivity
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.karumi.dexter.Dexter
@@ -23,6 +25,15 @@ class MainActivity : CoroutineScopeActivity() {
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
+    private val adapter= MovieAdapter(this){
+        val intent= Intent(
+            this,
+            DetailActivity::class.java
+        ).putExtra(DetailActivity.MOVIE, it)
+        startActivity(intent)
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
@@ -36,9 +47,11 @@ class MainActivity : CoroutineScopeActivity() {
                 getString(R.string.api_key),
                 getRegionFromLocation(location)
             )
-            val adapter = MovieAdapter(this@MainActivity, movies.results)
-            binding.recycler.adapter = adapter
+            adapter.movies= movies.results
+            adapter.notifyDataSetChanged()
         }
+
+        binding.recycler.adapter = adapter
     }
 
     private fun getRegionFromLocation(location: Location?): String {

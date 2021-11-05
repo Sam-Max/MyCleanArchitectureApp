@@ -1,6 +1,8 @@
 package com.example.mycleanarchitectureapp.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 data class MovieDbResult(
     val page: Int,
@@ -9,6 +11,7 @@ data class MovieDbResult(
     @SerializedName("total_results") val totalResult: Int
 )
 
+@Parcelize
 data class Movie(
     val adult: Boolean,
     @SerializedName("backdrop_path")
@@ -32,4 +35,4 @@ data class Movie(
     val voteAverage: Double,
     @SerializedName("vote_count")
     val voteCount: Int
-)
+) : Parcelable

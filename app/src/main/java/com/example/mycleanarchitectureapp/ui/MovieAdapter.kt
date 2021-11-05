@@ -12,9 +12,10 @@ import com.example.mycleanarchitectureapp.model.Movie
 
 class MovieAdapter(
     private val context: Context,
-    var movies: List<Movie>,
     val listener: (Movie) -> Unit
 ) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
+
+    var movies: List<Movie> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val view: View = LayoutInflater
